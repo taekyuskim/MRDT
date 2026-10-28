@@ -1,0 +1,25 @@
+# Python 3.10. Install CUDA PyTorch first (see README.md); versions below are the ones used for the reported runs.
+#   RTX 3090 (Ampere):           torch==2.1.0+cu121 torchvision==0.16.0+cu121
+#   RTX PRO 6000 (Blackwell):    torch==2.7.1+cu128 torchvision==0.22.1+cu128
+numpy==1.26.4
+Pillow==10.2.0
+opencv-python==4.9.0.80
+scipy==1.11.4
+PyYAML==6.0.1
+diffusers==0.27.2
+transformers==4.41.0
+huggingface-hub==0.23.4
+timm==1.0.3
+safetensors==0.4.3
+accelerate==0.30.1
+einops==0.7.0
+sentencepiece==0.2.0
+protobuf==4.25.9
+packaging==24.0
+matplotlib==3.8.4
+# evaluation (eval_nvs.py): LPIPS, SSIM, FID/KID
+lpips==0.1.4
+torchmetrics==1.4.3
+torch-fidelity==0.3.0
+# tests
+pytest

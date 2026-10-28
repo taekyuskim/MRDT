@@ -1,0 +1,155 @@
+{
+  "preprocessing_policy": "simple_radial_meridian_lookat_mask128_center_longedge80_gray128_v3",
+  "conditioning_policy": "continuous_direction_sincos4_raw_catalog_v1",
+  "conditioning_angle_source": "raw_catalog_azimuth_elevation_deg",
+  "selection_bin_deg": 15,
+  "camera_feature_dim": 4,
+  "camera_fields": [
+    "sin_az",
+    "cos_az",
+    "sin_el",
+    "cos_el"
+  ],
+  "sources": {
+    "train_direction_continuous_ddp.py": "ad9944d339ada9ebde2a8982c225646e2a3b131d0da0d3677094fa7ce0285253",
+    "continuous_direction_dataset.py": "83fa85c9dedd6ad9a80d3e676128db2fe54b578a1365bc2677ac3eb7d1071c08",
+    "roll_canonical_object.py": "eb6a584709014bccf0dd82df2a762eede92f614a457aeabf6bc21b67901dcf37",
+    "roll_direction_dataset.py": "b4a91336ce2763e55f30a703174b70ffe26803583cb6b2f0fb35fb4496a4348d",
+    "colmap_io.py": "99052c571d65d4bcdfaeceec7d0ac249747760f01c5e75bba8bebd99b6b204a3",
+    "direction_bin15_dataset.py": "d9eea1f10209f91a2cf47be1818aac2b0f2f15809f6ddbf115d3ff75ab0dc536",
+    "direction_bin15_model.py": "788f36faa9e4ce0d44d43ac6c0fb35ce72ae08141d6ce92d56e0045c3e35da9f",
+    "canonical_object.py": "3e143ebbe7a47139ff4e2c867569f4743b613e17b9fb4c368b73103c8c3e3b83",
+    "bin15_model.py": "eee8d155ef9bb35b3c0ab11c2621587b56e1bafb2903af3a5efffb8ff11a4d03",
+    "bin15_dataset.py": "1d38c952d5a302fc2dfb2ac0dba2f1e84d84bf624929e97398d603bcd7d65734",
+    "bin15_camera.py": "54b8c45e1f309e311a2332002b45f6b5044453562581fe76833a686c2ba13cb9",
+    "full_bin15_dataset.py": "29be157ffbd8324106b33bf65762932e071f5b39e9aad6c8c9bd6d9be0e1c0d2",
+    "epoch_sampling.py": "dd39aac401fc762369f27575ab99e020cba76426bea05981fd295ee60a83426d",
+    "train_bin15_pilot.py": "f4134fe550522152cb9f4e51ec188231ed27d80574f3294b5051809f31e6e2aa",
+    "view_cache.py": "41be1cd6f2382786350fedbe95b3a99c0ba3dd2658bce459cb3da1fedc1a4401",
+    "val_loss.py": "ee4d25cf1e721c64773a68aa92a922720a4f9785980589326010a6bb3c5960ee",
+    "class_text.py": "88932596166fb622cd8a7a98c206dcf90776a1058ac0a1ec7d3b7e291900e0f3",
+    "latent_cache.py": "064f189b2b2519e1569695719285f17ae89eb90e36fe657f7142a6b004dc2ffe"
+  },
+  "data_identity": "429398c444092957b69298e1b14cf147786e969c169acc106cba2702909ed2ee",
+  "data_root": "<MRDT_CATALOG>",
+  "dataset_counts": {
+    "train": 165711,
+    "test": 9258,
+    "val": 9309
+  },
+  "classes": 309,
+  "archive_count": 41,
+  "world_size": 4,
+  "batch_per_gpu": 16,
+  "global_batch": 64,
+  "grad_accum": 2,
+  "dtype": "fp32",
+  "precision": "bf16",
+  "vae_latents": "latent_cache_fp32_no_tf32",
+  "workers_per_gpu": 8,
+  "memory_cap_gib_per_rank": 20.0,
+  "steps": 200000,
+  "lr": 0.0001,
+  "warmup": 1000,
+  "tf32_allowed": true,
+  "tf32_hardware": true,
+  "cuda_alloc_conf": "expandable_segments:True",
+  "ema": {
+    "power": 0.75,
+    "max_decay": 0.9999,
+    "inv_gamma": 1.0,
+    "update_after_step": 0,
+    "source_sha256": "71b4fad018ece7b8fa8080bedeaa7d4adbe3e353c6f9474f15ae954e1d1b2284"
+  },
+  "val": {
+    "every": 1000,
+    "samples": 1024,
+    "timesteps": 10,
+    "seed": 0
+  },
+  "sampling_policy": "all_objects_once_per_epoch_python_shuffle_v1",
+  "object_seed": 0,
+  "prediction_type": "sample",
+  "latest_every": 1000,
+  "milestone_every": 5000,
+  "sample_seed": 1234,
+  "sample_every": 1000,
+  "fill": 0.8,
+  "background_rgb": [
+    128,
+    128,
+    128
+  ],
+  "context_encoding": "present_slots_only",
+  "loss": "x0 latent MSE x min(SNR,5.0)",
+  "loss_weighting": "min_snr",
+  "min_snr_gamma": 5.0,
+  "min_contexts": 1,
+  "max_contexts": 5,
+  "cond_drop_prob": 0.1,
+  "cond_drop_targets": "context_images+context_cameras (target direction kept)",
+  "panel_cfg_scale": 3.0,
+  "cross_attn": "alternate",
+  "context_pos_embed": "slotless_2d",
+  "target_pos_embed": "2d_sincos",
+  "text_cond": "class",
+  "rdt_arch": {
+    "hidden_size": 1024,
+    "depth": 14,
+    "num_heads": 32,
+    "mlp_ratio": 4.0
+  },
+  "cond_injection": "adaln_single",
+  "context_latents": "joint",
+  "text_bank": {
+    "path": "<CATALOG_DIR>/class_text_t5xxl.pt",
+    "sha256": "8f2e4588ce83ee53d9a869824446207b02f5d782f73398f295cdc2317f482082",
+    "template_version": "class_prompt_v2",
+    "template": "a photo of {a|an} {normalized class name}",
+    "normalization": "lowercase, collapse whitespace, strip leading \"the\", typo table",
+    "typo_fixes": {
+      "bbowknot": "bowknot"
+    },
+    "name_overrides": {
+      "571": "artificial flower",
+      "321": "liquid glue",
+      "453": "glue stick"
+    },
+    "max_tokens": 32,
+    "encoder": "google/t5-v1_1-xxl T5EncoderModel fp32"
+  },
+  "model_sources": {
+    "models/rdt/model.py": "d2d3c21742909ceea7caab4483c952bc1cb4e314b390177286435fce18715218",
+    "models/rdt/blocks.py": "70169a45c900a0e6397c21ddbd6cd52cdedf9bd8de9587cfafaf6e1540bfa090",
+    "models/rdt_runner.py": "160733b416daf3696950d517a26ebb9b98e9d6a732393e2bfb6039e73c120d64",
+    "rescene/models/encoders.py": "3631ad06de64121ad61d1569ecfb3aa7f474d099e79cfcaded14bb8ea61a94d5",
+    "rescene/codec/vae_latent_delta.py": "88302a9d4b0d3752be58294f6158a4f4e6f7335eb6857a95aa85d869e20d85ef"
+  },
+  "lr_schedule": "constant",
+  "schedule": "scratch, 1000 warmup then constant lr, fresh optimizer",
+  "generator_initialization": "scratch_seed0_no_checkpoint",
+  "feature_models": {
+    "siglip_model": "<MRDT_MODEL_ROOT>/siglip-so400m-patch14-384",
+    "vae_id": "<MRDT_MODEL_ROOT>/sd-vae-ft-mse"
+  },
+  "invalid_view_policy": "missing_foreground_same_object_same_bin_first_v1",
+  "cond_drop_split": {
+    "all": 0.1,
+    "image_only": 0.05,
+    "text_only": 0.05,
+    "none": 0.7999999999999999,
+    "cfg_unconditional": "all dropped (images, cameras, text)"
+  },
+  "initial_checkpoint": null,
+  "base_checkpoint_step": 0,
+  "initial_checkpoint_sha256": null,
+  "generator_initial_state_sha256": "1865edabe89c6ea853fce3489d77be3dbec29c1587de9e18bc56a440477957f1",
+  "optimizer_initial_state_entries": 0,
+  "generator_weight_loading_blocked_during_construction": true,
+  "generator_trainable_parameters": 256898016,
+  "frozen_pretrained_components": [
+    "SigLIP",
+    "VAE"
+  ],
+  "objects_per_epoch": 165711
+}
